@@ -7,7 +7,9 @@ namespace Pokemon
         static void Main(string[] args)
         {
             WindowManager windowManager = new WindowManager();
-            windowManager.SetWindow(new Title());
-            windowManager.DisplayWindow();
+            Game game = new Game(windowManager);
+
+            game.Start();
         }
-    }}
+    }
+}

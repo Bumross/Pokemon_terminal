@@ -2,10 +2,7 @@ using System;
 
 namespace Pokemon
 {
-    public interface WindowDisplay
-    {
-        void DisplayWindow();
-    }
+
 
     public class WindowManager
     {
@@ -15,15 +12,15 @@ namespace Pokemon
         {
             _window = window;
         }
-        public void DisplayWindow()
+        public void DisplayWindow(int row)
         {
-            _window.DisplayWindow();
+            _window.DisplayWindow(row);
         }
     }
 
     public class Title : WindowDisplay
     {
-        public void DisplayWindow()
+        public void DisplayWindow(int row)
         {
             Console.Clear();
             Console.WriteLine("");
@@ -51,12 +48,27 @@ namespace Pokemon
 
     public class MainManu : WindowDisplay
     {
-        public void DisplayWindow()
+        public void DisplayWindow(int row)
         {
-            Console.WriteLine("MainManu");
-            Console.WriteLine("1. Start Game");
-            Console.WriteLine("2. Credits");
-            Console.WriteLine("3. Exit");
+            Console.Clear();
+            Console.WriteLine("Main Menu");
+
+            Func<int, string> getMenuOption = (index) =>
+            {
+                switch (index)
+                {
+                    case 0: return "Start Game";
+                    case 1: return "Credits";
+                    case 2: return "Exit";
+                    default: return "Unknown Option";
+                }
+            };
+
+            for (int i = 0; i < 3; i++)
+            {
+                string arrow = (i == row) ? ">>" : "  ";
+                Console.WriteLine($"{arrow} {getMenuOption(i)}");
+            }
         }
     }
 }
