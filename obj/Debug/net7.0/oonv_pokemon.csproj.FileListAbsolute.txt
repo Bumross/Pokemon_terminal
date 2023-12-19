@@ -1,0 +1,14 @@
+C:\Users\bruli\Desktop\oonv_pokemon\bin\Debug\net7.0\oonv_pokemon.exe
+C:\Users\bruli\Desktop\oonv_pokemon\bin\Debug\net7.0\oonv_pokemon.deps.json
+C:\Users\bruli\Desktop\oonv_pokemon\bin\Debug\net7.0\oonv_pokemon.runtimeconfig.json
+C:\Users\bruli\Desktop\oonv_pokemon\bin\Debug\net7.0\oonv_pokemon.dll
+C:\Users\bruli\Desktop\oonv_pokemon\bin\Debug\net7.0\oonv_pokemon.pdb
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\oonv_pokemon.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\oonv_pokemon.AssemblyInfoInputs.cache
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\oonv_pokemon.AssemblyInfo.cs
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\oonv_pokemon.csproj.CoreCompileInputs.cache
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\oonv_pokemon.dll
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\refint\oonv_pokemon.dll
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\oonv_pokemon.pdb
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\oonv_pokemon.genruntimeconfig.cache
+C:\Users\bruli\Desktop\oonv_pokemon\obj\Debug\net7.0\ref\oonv_pokemon.dll
