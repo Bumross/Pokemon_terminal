@@ -1,21 +1,18 @@
-namespace Pokemon
+namespace Poke
 {
     public interface IWindowDisplay
     {
         void DisplayWindow(int row, List<string> strings);
     }
 
-
-    interface IPokemon
+    public interface IPokemon
     {
-        void Attack(){}
-        void ShowStats(){}
-        void LevelUp(){}
-        void ShowAttacks(){}
-    }
-
-    interface Type
-    {
-
+        void Attack(IPokemon enemy);
+        void ShowStats();
+        void LevelUp();
+        void GainXP(int xp);
+        void ShowAttacks();
+        void Heal(int heal);
+        void GainDamage(int damage);
     }
 }

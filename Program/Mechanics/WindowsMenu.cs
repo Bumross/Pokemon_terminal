@@ -1,9 +1,7 @@
 using System;
 
-namespace Pokemon
+namespace Poke
 {
-
-
     public class WindowManager
     {
         private IWindowDisplay? _window;
@@ -17,6 +15,7 @@ namespace Pokemon
             _window?.DisplayWindow(row, strings);
         }
     }
+
 
     public class Middler
     {
@@ -52,6 +51,7 @@ namespace Pokemon
         }
     }
 
+
 // Main Manu display
     public class MainManu : IWindowDisplay
     {
@@ -75,6 +75,7 @@ namespace Pokemon
         }
     }
 
+
 // Credits info ()
     public class Credits : IWindowDisplay
     {
@@ -89,6 +90,7 @@ namespace Pokemon
             }
         }
     }
+
 
     public class Exit : IWindowDisplay
     {

@@ -1,10 +1,13 @@
-namespace Pokemon
+namespace Poke
 {
-    class Charmander : IPokemon
+    public class Charmander
     {
         public string Name;
         public int HP;
         public int DEF;
-        public PokeGraphics Visual;
+        public int XP;
+        public int LVL;
+        public List<string> Attacks;
+        public List<string> Type;
     }
 }

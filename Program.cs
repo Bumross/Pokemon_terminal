@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace Pokemon
+namespace Poke
 {
     class Program
     {
         static void Main(string[] args)
         {
-            WindowManager windowManager = new WindowManager();
-            Game game = new Game(windowManager);
+            Game game = new Game();
             
             game.Start();
         }

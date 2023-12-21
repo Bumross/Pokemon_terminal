@@ -1,4 +1,4 @@
-namespace Pokemon
+namespace Poke
 {
     class PokeGraphics
     {
