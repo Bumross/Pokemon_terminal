@@ -4,7 +4,7 @@ namespace Poke
     {
         Middler middler = new Middler();
 
-        public void DisplayWindow(int row, List<string> strings)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
         {
             Console.Clear();
             int separatorIndex = strings.IndexOf("NEXT_LIST");
@@ -17,15 +17,30 @@ namespace Poke
                 middler.Print(oakrow, Console.WindowWidth);
             }
             for (int i = 0; i < 3; i++){Console.WriteLine("");}
-            middler.Print(oakSpeech[row], Console.WindowWidth);
+            middler.Print((oakSpeech[row].Replace("PLAYER_NAME", trainer.Name)).Replace("RIVAL_NAME", trainer.RivalName), Console.WindowWidth);
             for (int i = 0; i < (Console.WindowHeight - oakVisual.Count - 9); i++){Console.WriteLine("");}
+
             if (oakSpeech[row+1].Contains("PLAYER_NAME"))
             {
-                Console.WriteLine("Enter your name: ");
+                if (trainer.Name == null)
+                {
+                    Console.WriteLine("Enter your name: ");
+                }
+                else
+                {
+                    middler.Print("Press Enter to continue", Console.WindowWidth);
+                }
             }
             else if (oakSpeech[row+1].Contains("RIVAL_NAME"))
             {
-                Console.WriteLine("Enter the name of the enemy: ");
+                if (trainer.RivalName == null)
+                {
+                    Console.WriteLine("Enter your name: ");
+                }
+                else
+                {
+                    middler.Print("Press Enter to continue", Console.WindowWidth);
+                }
             }
             else
             {

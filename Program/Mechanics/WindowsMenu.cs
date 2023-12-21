@@ -10,9 +10,9 @@ namespace Poke
         {
             _window = window;
         }
-        public void DisplayWindow(int row, List<string> strings)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
         {
-            _window?.DisplayWindow(row, strings);
+            _window?.DisplayWindow(row, strings, trainer);
         }
     }
 
@@ -30,7 +30,7 @@ namespace Poke
     public class Title : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
         {
             int Width = Console.WindowWidth;
             int Height = Console.WindowHeight;
@@ -56,7 +56,7 @@ namespace Poke
     public class MainManu : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
@@ -80,7 +80,7 @@ namespace Poke
     public class Credits : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
@@ -95,7 +95,7 @@ namespace Poke
     public class Exit : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}

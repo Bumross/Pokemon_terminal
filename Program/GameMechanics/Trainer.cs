@@ -5,6 +5,8 @@ namespace Poke
         public string? Name;
         public List<IPokemon>? Pokemons;
         public Dictionary<string, int>? Inventory;
+        public string RivalName;
+        public IPokemon RivalPokemon;
         
         public Trainer()
         {
@@ -16,6 +18,11 @@ namespace Poke
         public void SetName(string name)
         {
             this.Name = name;
+        }
+
+        public void SetRivalName(string name)
+        {
+            this.RivalName = name;
         }
     }
 }

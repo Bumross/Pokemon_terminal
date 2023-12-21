@@ -2,7 +2,7 @@ namespace Poke
 {
     public interface IWindowDisplay
     {
-        void DisplayWindow(int row, List<string> strings);
+        void DisplayWindow(int row, List<string> strings, Trainer trainer);
     }
 
     public interface IPokemon

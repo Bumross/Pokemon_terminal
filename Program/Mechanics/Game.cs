@@ -8,7 +8,6 @@ namespace Poke
         public PokeGraphics pokeGraphics;
         public WindowsGraphics windowsGraphics;
         public Trainer Player;
-        public Trainer Rival;
 
         public Game()
         {
@@ -18,14 +17,13 @@ namespace Poke
             this.windowsGraphics = new WindowsGraphics();
             this.Exit = false;
             this.Player = new Trainer();
-            this.Rival = new Trainer();
         }
 
 
         public void Start()
         {
             windowManager.SetWindow(new Title());
-            windowManager.DisplayWindow(0, windowsGraphics.MainLogo);
+            windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player);
             Console.ReadKey();
             LoadMainPage();
 
@@ -47,14 +45,14 @@ namespace Poke
                 else if (this.Row == 1)
                 {
                 windowManager.SetWindow(new Credits());
-                windowManager.DisplayWindow(0, windowsGraphics.Credits);
+                windowManager.DisplayWindow(0, windowsGraphics.Credits, Player);
                 Console.ReadKey();
                 }
                 else if (this.Row == 2)
                 {
                     Console.WriteLine(this.Row);
                     windowManager.SetWindow(new Exit());
-                    windowManager.DisplayWindow(0, windowsGraphics.MainLogo);
+                    windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player);
                     Console.ReadKey();
                     break;
                 }
@@ -65,13 +63,19 @@ namespace Poke
 
         public void StartGame()
         {
+            DoOpeningOakSpeech();
+
+            
+        }
+
+        public void DoOpeningOakSpeech()
+        {
             int counter = 0;
             string playerName = "";
             string rivalName = "";
-            //Prof Oak intro:
             while (!this.Exit)
             {
-            RenderOakSpeech(counter);
+            RenderOakSpeech(counter, this.Player);
             if (counter != 6 & counter != 9) {Console.ReadKey();}
             else if (counter == 6)
             {
@@ -86,18 +90,16 @@ namespace Poke
                 string input = Console.ReadLine();
                 if (input != null){rivalName = input;}
                 else {rivalName = "Red";}
-                this.Rival.SetName(rivalName);
+                this.Player.SetRivalName(rivalName);
             }
             counter += 1;
             }
-
-            
         }
 
-        public void RenderOakSpeech(int row)
+        public void RenderOakSpeech(int row, Trainer Player)
         {
             windowManager.SetWindow(new OakSpeech());
-            windowManager.DisplayWindow(row, windowsGraphics.CombineLists(windowsGraphics.ProfOak, windowsGraphics.ProfOakSpeechIntro));
+            windowManager.DisplayWindow(row, windowsGraphics.CombineLists(windowsGraphics.ProfOak, windowsGraphics.ProfOakSpeechIntro), Player);
             }
 
         public void ChooseRow(int rows)
@@ -107,7 +109,7 @@ namespace Poke
             while (!exit)
             {
                 this.Row = this.Row % rows;
-                windowManager.DisplayWindow(this.Row, windowsGraphics.MainMenu);
+                windowManager.DisplayWindow(this.Row, windowsGraphics.MainMenu, Player);
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.UpArrow)
                 {
