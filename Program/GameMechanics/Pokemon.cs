@@ -5,6 +5,6 @@ namespace Pokemon
         public string Name;
         public int HP;
         public int DEF;
-
+        public PokeGraphics Visual;
     }
 }

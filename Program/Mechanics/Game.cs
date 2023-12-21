@@ -6,20 +6,23 @@ namespace Pokemon
     {
         public WindowManager windowManager;
         public int Row;
+        public PokeGraphics pokeGraphics;
+        public WindowsGraphics windowsGraphics;
 
         public Game(WindowManager windowManager)
         {
             this.windowManager = windowManager;
             this.Row = 0;
+            this.pokeGraphics = new PokeGraphics();
+            this.windowsGraphics = new WindowsGraphics();
         }
 
         public void Start()
         {
             windowManager.SetWindow(new Title());
-            windowManager.DisplayWindow(0);
+            windowManager.DisplayWindow(0, windowsGraphics.MainLogo);
             Console.ReadKey();
             LoadMainPage();
-
         }
 
         public void LoadMainPage()
@@ -37,11 +40,15 @@ namespace Pokemon
                 else if (this.Row == 1)
                 {
                 windowManager.SetWindow(new Credits());
-                windowManager.DisplayWindow(0);
+                windowManager.DisplayWindow(0, windowsGraphics.Credits);
                 Console.ReadKey();
                 }
                 else if (this.Row == 2)
                 {
+                    Console.WriteLine(this.Row);
+                    windowManager.SetWindow(new Exit());
+                    windowManager.DisplayWindow(0, windowsGraphics.MainLogo);
+                    Console.ReadKey();
                     break;
                 }
             }
@@ -54,7 +61,7 @@ namespace Pokemon
             while (!exit)
             {
                 this.Row = this.Row % rows;
-                windowManager.DisplayWindow(this.Row);
+                windowManager.DisplayWindow(this.Row, windowsGraphics.MainMenu);
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.UpArrow)
                 {
@@ -71,6 +78,5 @@ namespace Pokemon
                 }
             }
         }
-
     }
 }

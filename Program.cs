@@ -8,7 +8,7 @@ namespace Pokemon
         {
             WindowManager windowManager = new WindowManager();
             Game game = new Game(windowManager);
-
+            
             game.Start();
         }
     }

@@ -1,8 +1,8 @@
 namespace Pokemon
 {
-    public interface WindowDisplay
+    public interface IWindowDisplay
     {
-        void DisplayWindow(int row);
+        void DisplayWindow(int row, List<string> strings);
     }
 
 
