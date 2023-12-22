@@ -75,12 +75,17 @@ namespace Poke
             string rivalName = "";
             while (!this.Exit)
             {
-            RenderOakSpeech(counter, this.Player);
+            if (counter < 3){RenderOakSpeech(counter, this.Player, windowsGraphics.ProfOak);}
+            if (2 < counter & counter < 6){RenderOakSpeech(counter, this.Player, windowsGraphics.TitlePokemon);}
+            if (5 < counter & counter < 8){RenderOakSpeech(counter, this.Player, windowsGraphics.Me);}
+            if (7 < counter & counter < 11){RenderOakSpeech(counter, this.Player, windowsGraphics.Rival);}
+            if (counter > 10){RenderOakSpeech(counter, this.Player, windowsGraphics.Me);}
+
             if (counter != 6 & counter != 9) {Console.ReadKey();}
             else if (counter == 6)
             {
                 string input = Console.ReadLine();
-                if (input != null){playerName = input;}
+                if (input != ""){playerName = input;}
                 else {playerName = "Ashe";}
                 this.Player.SetName(playerName);
 
@@ -88,7 +93,7 @@ namespace Poke
             else if (counter == 9)
             {
                 string input = Console.ReadLine();
-                if (input != null){rivalName = input;}
+                if (input != ""){rivalName = input;}
                 else {rivalName = "Red";}
                 this.Player.SetRivalName(rivalName);
             }
@@ -96,10 +101,10 @@ namespace Poke
             }
         }
 
-        public void RenderOakSpeech(int row, Trainer Player)
+        public void RenderOakSpeech(int row, Trainer Player, List<string> visual)
         {
             windowManager.SetWindow(new OakSpeech());
-            windowManager.DisplayWindow(row, windowsGraphics.CombineLists(windowsGraphics.ProfOak, windowsGraphics.ProfOakSpeechIntro), Player);
+            windowManager.DisplayWindow(row, windowsGraphics.CombineLists(visual, windowsGraphics.ProfOakSpeechIntro), Player);
             }
 
         public void ChooseRow(int rows)

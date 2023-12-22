@@ -15,7 +15,7 @@ namespace Poke
             this.Inventory = new Dictionary<string, int>();
         }
 
-        public void SetName(string name)
+        public void SetName(string? name)
         {
             this.Name = name;
         }
