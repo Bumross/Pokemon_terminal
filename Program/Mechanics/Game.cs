@@ -30,6 +30,14 @@ namespace Poke
             StartGame();
         }
 
+        public void StartGame()
+        {
+            DoOpeningOakSpeech();
+            SpawnInRoom();
+
+            
+        }
+
 
         public void LoadMainPage()
         {
@@ -54,18 +62,10 @@ namespace Poke
                     windowManager.SetWindow(new Exit());
                     windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player);
                     Console.ReadKey();
-                    break;
+                    System.Environment.Exit(0);
                 }
             }
             this.Exit = false;
-        }
-
-
-        public void StartGame()
-        {
-            DoOpeningOakSpeech();
-
-            
         }
 
         public void DoOpeningOakSpeech()
@@ -84,7 +84,7 @@ namespace Poke
             if (counter != 6 & counter != 9) {Console.ReadKey();}
             else if (counter == 6)
             {
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
                 if (input != ""){playerName = input;}
                 else {playerName = "Ashe";}
                 this.Player.SetName(playerName);
@@ -92,12 +92,14 @@ namespace Poke
             }
             else if (counter == 9)
             {
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
                 if (input != ""){rivalName = input;}
                 else {rivalName = "Red";}
                 this.Player.SetRivalName(rivalName);
             }
+
             counter += 1;
+            if (counter == windowsGraphics.ProfOakSpeechIntro.Count){this.Exit = true;}
             }
         }
 
@@ -106,6 +108,12 @@ namespace Poke
             windowManager.SetWindow(new OakSpeech());
             windowManager.DisplayWindow(row, windowsGraphics.CombineLists(visual, windowsGraphics.ProfOakSpeechIntro), Player);
             }
+
+        public void SpawnInRoom()
+        {
+            windowManager.SetWindow(new Room());
+            windowManager.DisplayWindow(0, windowsGraphics.CombineLists(windowsGraphics.MyRoom, windowsGraphics.miniMe), Player);
+        }
 
         public void ChooseRow(int rows)
         {

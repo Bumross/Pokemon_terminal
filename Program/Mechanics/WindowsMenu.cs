@@ -17,15 +17,6 @@ namespace Poke
     }
 
 
-    public class Middler
-    {
-        public void Print(string row, int width)
-        {
-            Console.WriteLine(new string(' ', width/2 - (row.Length/2)) + row);
-        }
-    }
-
-
 // Main Logo POKEMON (If you dont notice)
     public class Title : IWindowDisplay
     {
