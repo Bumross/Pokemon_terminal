@@ -10,9 +10,9 @@ namespace Poke
         {
             _window = window;
         }
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
-            _window?.DisplayWindow(row, strings, trainer);
+            _window?.DisplayWindow(row, strings, trainer, optionText);
         }
     }
 
@@ -21,7 +21,7 @@ namespace Poke
     public class Title : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             int Width = Console.WindowWidth;
             int Height = Console.WindowHeight;
@@ -47,20 +47,14 @@ namespace Poke
     public class MainManu : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
             middler.Print("Main Menu ", Console.WindowWidth);
             for (int i = 0; i < 2; i++){Console.WriteLine("");}
 
-            for (int i = 0; i < 3; i++)
-            {
-                string optionText = strings[i];
-                string arrow = (i == row) ? ">>" : "  ";
-                string arrow2 = (i == row) ? "<<" : "  ";
-                middler.Print($"{arrow}  {optionText}  {arrow2}", Console.WindowWidth);
-            }
+            middler.PrintOptions(row, strings);
             for (int i = 0; i < 10; i++){Console.WriteLine("");}
             middler.Print("Arrows to move, Enter to select", Console.WindowWidth);
         }
@@ -71,7 +65,7 @@ namespace Poke
     public class Credits : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
@@ -86,7 +80,7 @@ namespace Poke
     public class Exit : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}

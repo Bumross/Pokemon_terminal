@@ -6,7 +6,7 @@ namespace Poke
     {
         Middler middler = new Middler();
 
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             int separatorIndex = strings.IndexOf("NEXT_LIST");
@@ -57,26 +57,27 @@ namespace Poke
     public class Room : IWindowDisplay
     {
         Middler middler = new Middler();
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer)
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             List<string> room = middler.Separate(strings)[0];
             List<string> me = middler.Separate(strings)[1];
 
             List<int> coordsMe = middler.MoveToTheMiddle(me);
-            Console.WriteLine(coordsMe[1]);
-            Console.WriteLine(coordsMe[2]);
+            int k = 0;
             foreach ((string listrow, int index) in room.Select((listrow, index) => (listrow, index)))
             {
                 if (index <= coordsMe[1] & index > coordsMe[2])
                 {
-                    middler.PrintGameWindow(0, 0, listrow, me[0], coordsMe[0]);
+                    middler.PrintGameWindow(0, 0, listrow, me[k], coordsMe[0]);
+                    k += 1;
                 }
                 else
                 {
                     middler.Print(listrow, Console.WindowWidth);
                 }
             }
+            middler.PrintOptions(row, optionText);
         }
     }
 }

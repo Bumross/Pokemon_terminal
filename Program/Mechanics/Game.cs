@@ -23,7 +23,7 @@ namespace Poke
         public void Start()
         {
             windowManager.SetWindow(new Title());
-            windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player);
+            windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player, windowsGraphics.EmptyOption);
             Console.ReadKey();
             LoadMainPage();
 
@@ -32,7 +32,7 @@ namespace Poke
 
         public void StartGame()
         {
-            DoOpeningOakSpeech();
+            //DoOpeningOakSpeech();
             SpawnInRoom();
 
             
@@ -44,7 +44,7 @@ namespace Poke
             while (!this.Exit)
             {
                 windowManager.SetWindow(new MainManu());
-                ChooseRow(3);
+                ChooseRow(3, windowsGraphics.MainMenu, windowsGraphics.EmptyOption);
 
                 if (this.Row == 0)
                 {
@@ -53,20 +53,21 @@ namespace Poke
                 else if (this.Row == 1)
                 {
                 windowManager.SetWindow(new Credits());
-                windowManager.DisplayWindow(0, windowsGraphics.Credits, Player);
+                windowManager.DisplayWindow(0, windowsGraphics.Credits, Player, windowsGraphics.EmptyOption);
                 Console.ReadKey();
                 }
                 else if (this.Row == 2)
                 {
                     Console.WriteLine(this.Row);
                     windowManager.SetWindow(new Exit());
-                    windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player);
+                    windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player, windowsGraphics.EmptyOption);
                     Console.ReadKey();
                     System.Environment.Exit(0);
                 }
             }
             this.Exit = false;
         }
+
 
         public void DoOpeningOakSpeech()
         {
@@ -106,23 +107,24 @@ namespace Poke
         public void RenderOakSpeech(int row, Trainer Player, List<string> visual)
         {
             windowManager.SetWindow(new OakSpeech());
-            windowManager.DisplayWindow(row, windowsGraphics.CombineLists(visual, windowsGraphics.ProfOakSpeechIntro), Player);
+            windowManager.DisplayWindow(row, windowsGraphics.CombineLists(visual, windowsGraphics.ProfOakSpeechIntro), Player, windowsGraphics.EmptyOption);
             }
 
         public void SpawnInRoom()
         {
             windowManager.SetWindow(new Room());
-            windowManager.DisplayWindow(0, windowsGraphics.CombineLists(windowsGraphics.MyRoom, windowsGraphics.miniMe), Player);
+            ChooseRow(1, windowsGraphics.MyRoom, windowsGraphics.ActionMenus["room"]);
+            windowManager.DisplayWindow(0, windowsGraphics.CombineLists(windowsGraphics.MyRoom, windowsGraphics.miniMe), Player, windowsGraphics.ActionMenus["room"]);
         }
 
-        public void ChooseRow(int rows)
+        public void ChooseRow(int rows, List<string> window, List<string> options)
         {
             this.Row = 0;
             bool exit = false;
             while (!exit)
             {
                 this.Row = this.Row % rows;
-                windowManager.DisplayWindow(this.Row, windowsGraphics.MainMenu, Player);
+                windowManager.DisplayWindow(this.Row, window, Player, options);
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.UpArrow)
                 {

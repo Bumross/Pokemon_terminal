@@ -41,6 +41,10 @@ namespace Poke
             "Happy exploring!"
         };
 
+        public List<string> EmptyOption = new List<string>
+        {};
+
+
         public List<string> ProfOakSpeechIntro = new List<string>
         {
             "Hello there!",
@@ -58,6 +62,22 @@ namespace Poke
             "PLAYER_NAME! Your very own POKEMON legend is about to unfold!", // id 12 - PLAYER_NAME
             "A world of dreams and adventures with POKEMON awaits! Let's go!",
         };
+
+
+        public Dictionary<string, List<string>> ActionMenus = new Dictionary<string, List<string>>
+        {
+            { "room", new List<string> { "Go downstairs" } },
+            { "livingRoom", new List<string> { "Talk to mum", "Go outside", "Go upstairs" } },
+            { "palletTown", new List<string> { "Go to Viridian City", "Go home", "Go to Oak's Lab" } },
+        };
+
+
+        public List<string> ProfOakSpeechLab = new List<string>
+        {
+            "I'm PROF. OAK! I study POKEMON as a profession.",
+            "I have many POKEMON that I study. I study all sorts of things."
+        };
+
 
         public List<string> ProfOak = new List<string>
         {
@@ -181,9 +201,9 @@ namespace Poke
 
         public List<string> miniMe = new List<string>
             {
-                "█████",
-                "█████",
-                "█████"
+                " ███ ",
+                "█YOU█",
+                " ███ "
             };
 
         public List<string> MyRoom = new List<string>
@@ -205,20 +225,20 @@ namespace Poke
             "                                                                                                    ",
             "                                                                                                    ",
             "                                                                                                    ",
-            "                                      ░▓▓▓▓▓▓▓▓▓▒░                                                  ",
-            "                                     ░███████████▒                                                  ",
-            "                                     ▓▒░░░░░░░░░░█                                                  ",
-            "                                     ▓▓███████████                                                  ",
-            "                                     ▓▓█░░░▒▒▒▒▓██                                                  ",
-            "                                     ▓▓█▒▒▒▒▒▒▒▓██                                                  ",
-            "                                     ▓▓█████████▓█                                                  ",
-            "                                     ░▒▒▒▒▒▒▒▒▒▒▒░                                                  ",
-            "                                     ░█▒░░░░█▒                                                      ",
-            "                                     ░█░███▓▓▒                                                      ",
-            "                                     ░█░░░░░▓▒  ░                                                   ",
-            "                                     ░░██████▒█░█▒                                                  ",
-            "                                       ░█▓▓██▒░░▓█                                                  ",
-            "                                          ░░█░░█░░                                                  ",
+            "                          ░▓▓▓▓▓▓▓▓▓▒░                                                              ",
+            "                         ░███████████▒                                                              ",
+            "                         ▓▒░░░░░░░░░░█                                                              ",
+            "                         ▓▓███████████                                                              ",
+            "                         ▓▓█░░░▒▒▒▒▓██                                                              ",
+            "                         ▓▓█▒▒▒▒▒▒▒▓██                                                              ",
+            "                         ▓▓█████████▓█                                                              ",
+            "                         ░▒▒▒▒▒▒▒▒▒▒▒░                                                              ",
+            "                         ░█▒░░░░█▒                                                                  ",
+            "                         ░█░███▓▓▒                                                                  ",
+            "                         ░█░░░░░▓▒  ░                                                               ",
+            "                         ░░██████▒█░█▒                                                              ",
+            "                           ░█▓▓██▒░░▓█                                                              ",
+            "                              ░░█░░█░░                                                              ",
             "█████████████                                                               ░░░    ░░ ░             ",
             "█▓▓▓▓▓▓▓▓▓▓▓█                                                              ▓█▒░██▓██░▒██            ",
             "█▒▒██████▓▒▓█                                                              █▓▒▒▒▒█▒▓▓▓▓▓            ",
