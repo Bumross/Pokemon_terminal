@@ -4,12 +4,11 @@ namespace Poke
 {
     public class OakSpeech : IWindowDisplay
     {
-        Middler middler = new Middler();
+        Middler middler = Middler.Instance;
 
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
-            int separatorIndex = strings.IndexOf("NEXT_LIST");
             List<string> oakVisual = middler.Separate(strings)[0];
             List<string> oakSpeech = middler.Separate(strings)[1];
             
@@ -19,7 +18,7 @@ namespace Poke
                 middler.Print(oakrow, Console.WindowWidth);
             }
             for (int i = 0; i < 3; i++){Console.WriteLine("");}
-            middler.Print((oakSpeech[row].Replace("PLAYER_NAME", trainer.Name)).Replace("RIVAL_NAME", trainer.RivalName), Console.WindowWidth);
+            middler.Print(oakSpeech[row].Replace("PLAYER_NAME", trainer.Name).Replace("RIVAL_NAME", trainer.RivalName), Console.WindowWidth);
             for (int i = 0; i < (Console.WindowHeight - oakVisual.Count - 9); i++){Console.WriteLine("");}
 
             if (trainer.Name == null & trainer.RivalName == null)
@@ -56,7 +55,7 @@ namespace Poke
 
     public class Room : IWindowDisplay
     {
-        Middler middler = new Middler();
+        Middler middler = Middler.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();

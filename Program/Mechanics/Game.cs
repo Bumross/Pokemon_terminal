@@ -32,9 +32,9 @@ namespace Poke
 
         public void StartGame()
         {
-            //DoOpeningOakSpeech();
+            DoOpeningOakSpeech();
             SpawnInRoom();
-
+            DownStairs();
             
         }
 
@@ -58,11 +58,7 @@ namespace Poke
                 }
                 else if (this.Row == 2)
                 {
-                    Console.WriteLine(this.Row);
-                    windowManager.SetWindow(new Exit());
-                    windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player, windowsGraphics.EmptyOption);
-                    Console.ReadKey();
-                    System.Environment.Exit(0);
+                    this.ExitGame();
                 }
             }
             this.Exit = false;
@@ -102,7 +98,9 @@ namespace Poke
             counter += 1;
             if (counter == windowsGraphics.ProfOakSpeechIntro.Count){this.Exit = true;}
             }
+            this.Exit = false;
         }
+
 
         public void RenderOakSpeech(int row, Trainer Player, List<string> visual)
         {
@@ -110,12 +108,63 @@ namespace Poke
             windowManager.DisplayWindow(row, windowsGraphics.CombineLists(visual, windowsGraphics.ProfOakSpeechIntro), Player, windowsGraphics.EmptyOption);
             }
 
+
         public void SpawnInRoom()
         {
-            windowManager.SetWindow(new Room());
-            ChooseRow(1, windowsGraphics.MyRoom, windowsGraphics.ActionMenus["room"]);
-            windowManager.DisplayWindow(0, windowsGraphics.CombineLists(windowsGraphics.MyRoom, windowsGraphics.miniMe), Player, windowsGraphics.ActionMenus["room"]);
+            while (!this.Exit)
+            {
+                windowManager.SetWindow(new Room());
+                ChooseRow(2, windowsGraphics.MyRoom, windowsGraphics.ActionMenus["room"]);
+                ConsoleKeyInfo key = Console.ReadKey();
+
+                if (this.Row == 0)
+                {
+                    this.Exit = true;
+                }
+                else if (this.Row == 1)
+                {
+                }
+                else if (key.Key == ConsoleKey.Escape)
+                {
+                    this.ExitGame();
+
+                }
+            }
+            this.Exit = false;
         }
+
+        public void DownStairs()
+        {
+            while (!this.Exit)
+            {
+                windowManager.SetWindow(new Room());
+                ChooseRow(3, windowsGraphics.KitchenRoom, windowsGraphics.ActionMenus["livingRoom"]);
+                ConsoleKeyInfo key = Console.ReadKey();
+
+                if (this.Row == 0)
+                {
+                    this.Exit = true;
+                }
+                else if (this.Row == 1)
+                {
+                }
+                else if (key.Key == ConsoleKey.Escape)
+                {
+                    this.ExitGame();
+
+                }
+            }
+            this.Exit = false; 
+        }
+
+        public void ExitGame()
+        {
+            windowManager.SetWindow(new Exit());
+            windowManager.DisplayWindow(0, windowsGraphics.MainLogo, Player, windowsGraphics.EmptyOption);
+            Console.ReadKey();
+            System.Environment.Exit(0);
+        }
+
 
         public void ChooseRow(int rows, List<string> window, List<string> options)
         {

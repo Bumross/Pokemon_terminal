@@ -5,8 +5,22 @@ namespace Poke
         void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText);
     }
 
-    public class Middler
+    public class Middler //Singleton
     {
+        private static Middler? instance;
+        private Middler(){}
+        public static Middler Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Middler();
+                }
+                return instance;
+            }
+
+        }
         public void Print(string row, int width)
         {
             Console.WriteLine(new string(' ', width/2 - (row.Length/2)) + row);
@@ -30,6 +44,11 @@ namespace Poke
         public List<List<string>> Separate(List<string> list)
         {
             int separatorIndex = list.IndexOf("NEXT_LIST");
+            if (separatorIndex == -1)
+            {
+                separatorIndex = list.Count - 1;
+                return new List<List<string>>(){list, new List<string>(){" "}};
+            }
             List<string> list1 = list.GetRange(0, separatorIndex);
             List<string> list2 = list.GetRange(separatorIndex + 1, list.Count - separatorIndex - 1);
 

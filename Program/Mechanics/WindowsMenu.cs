@@ -20,7 +20,7 @@ namespace Poke
 // Main Logo POKEMON (If you dont notice)
     public class Title : IWindowDisplay
     {
-        Middler middler = new Middler();
+        Middler middler = Middler.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             int Width = Console.WindowWidth;
@@ -46,7 +46,7 @@ namespace Poke
 // Main Manu display
     public class MainManu : IWindowDisplay
     {
-        Middler middler = new Middler();
+        Middler middler = Middler.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
@@ -64,7 +64,7 @@ namespace Poke
 // Credits info ()
     public class Credits : IWindowDisplay
     {
-        Middler middler = new Middler();
+        Middler middler = Middler.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
@@ -79,7 +79,7 @@ namespace Poke
 
     public class Exit : IWindowDisplay
     {
-        Middler middler = new Middler();
+        Middler middler = Middler.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
