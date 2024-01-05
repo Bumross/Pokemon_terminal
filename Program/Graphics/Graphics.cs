@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+
 namespace Poke
 {
     class WindowsGraphics
@@ -63,11 +65,26 @@ namespace Poke
             "A world of dreams and adventures with POKEMON awaits! Let's go!",
         };
 
+        public List<string> ProfOakSpeechPokemonChoosing = new List<string>
+        {
+            "RIVAL_NAME: Gramps! I'm fed up with waiting!",
+            "OAK: RIVAL_NAME? Let me think...",
+            "Oh, that's right, I told you to come! Just wait!",
+            "Here, PLAYER_NAME!",
+            "There are 3 POKÉMON here! Haha' They are inside the POKÉ BALLs.",
+            "When I was young, I was serious POKÉMON trainer!",
+            "In my old age, I have only 3 left, but you can have one!",
+            "Choose!",
+            "",
+            "RIVAL_NAME: Hey! Gramps! What about me?",
+            "OAK: Be patient RIVAL_NAME, you can have one too!",
+        };
+
 
         public Dictionary<string, List<string>> ActionMenus = new Dictionary<string, List<string>>
         {
             { "room", new List<string> { "Go downstairs", "Do nothing"} },
-            { "livingRoom", new List<string> { "Talk to mum", "Go outside", "Go upstairs" } },
+            { "livingRoom", new List<string> {"Go outside", "Talk to mum", "Go upstairs" } },
             { "palletTown", new List<string> { "Go to Viridian City", "Go home", "Go to Oak's Lab" } },
         };
 

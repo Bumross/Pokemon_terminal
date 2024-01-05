@@ -2,25 +2,10 @@ using System;
 
 namespace Poke
 {
-    public class WindowManager
-    {
-        private IWindowDisplay? _window;
-
-        public void SetWindow(IWindowDisplay window)
-        {
-            _window = window;
-        }
-        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
-        {
-            _window?.DisplayWindow(row, strings, trainer, optionText);
-        }
-    }
-
-
 // Main Logo POKEMON (If you dont notice)
     public class Title : IWindowDisplay
     {
-        Middler middler = Middler.Instance;
+        Formater Formater = Formater.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             int Width = Console.WindowWidth;
@@ -32,7 +17,7 @@ namespace Poke
             for (int i = 0; i < Top; i++){Console.WriteLine("");}
             foreach (string logo_row in strings)
             {
-                middler.Print(logo_row, Width);
+                Formater.Print(logo_row, Width);
             }
             Console.WriteLine("");
             Console.WriteLine(new string(' ', Middle - ("Terminal Replica").Length / 2) + ("Terminal Replica"));
@@ -46,17 +31,17 @@ namespace Poke
 // Main Manu display
     public class MainManu : IWindowDisplay
     {
-        Middler middler = Middler.Instance;
+        Formater Formater = Formater.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
-            middler.Print("Main Menu ", Console.WindowWidth);
+            Formater.Print("Main Menu ", Console.WindowWidth);
             for (int i = 0; i < 2; i++){Console.WriteLine("");}
 
-            middler.PrintOptions(row, strings);
+            Formater.PrintOptions(row, strings);
             for (int i = 0; i < 10; i++){Console.WriteLine("");}
-            middler.Print("Arrows to move, Enter to select", Console.WindowWidth);
+            Formater.Print("Arrows to move, Enter to select", Console.WindowWidth);
         }
     }
 
@@ -64,14 +49,14 @@ namespace Poke
 // Credits info ()
     public class Credits : IWindowDisplay
     {
-        Middler middler = Middler.Instance;
+        Formater Formater = Formater.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
             foreach (string cred_row in strings)
             {
-                middler.Print(cred_row, Console.WindowWidth);
+                Formater.Print(cred_row, Console.WindowWidth);
             }
         }
     }
@@ -79,17 +64,17 @@ namespace Poke
 
     public class Exit : IWindowDisplay
     {
-        Middler middler = Middler.Instance;
+        Formater Formater = Formater.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
             foreach (string logrow in strings)
             {
-                middler.Print(logrow, Console.WindowWidth);
+                Formater.Print(logrow, Console.WindowWidth);
             }
             Console.WriteLine("");
-            middler.Print("Thank you for playing!", Console.WindowWidth);
+            Formater.Print("Thank you for playing!", Console.WindowWidth);
         }
     }
 }

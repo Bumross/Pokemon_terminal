@@ -1,3 +1,5 @@
+using Pokemon;
+
 namespace Poke
 {
     class Game
@@ -8,15 +10,17 @@ namespace Poke
         public PokeGraphics pokeGraphics;
         public WindowsGraphics windowsGraphics;
         public Trainer Player;
+        public GraphicsManager GraphicsManager;
 
         public Game()
         {
-            this.windowManager = new WindowManager();
+            this.windowManager = WindowManager.Instance;
             this.Row = 0;
             this.pokeGraphics = new PokeGraphics();
             this.windowsGraphics = new WindowsGraphics();
             this.Exit = false;
             this.Player = new Trainer();
+            this.GraphicsManager = new GraphicsManager();
         }
 
 
@@ -27,14 +31,15 @@ namespace Poke
             Console.ReadKey();
             LoadMainPage();
 
-            StartGame();
+            OpenGame();
         }
 
-        public void StartGame()
+        public void OpenGame()
         {
-            DoOpeningOakSpeech();
+            GraphicsManager.DoOpeningOakSpeech(this.Player);
             SpawnInRoom();
             DownStairs();
+            GraphicsManager.DoOakPokemonSelect(this.Player);
             
         }
 
@@ -65,57 +70,12 @@ namespace Poke
         }
 
 
-        public void DoOpeningOakSpeech()
-        {
-            int counter = 0;
-            string playerName = "";
-            string rivalName = "";
-            while (!this.Exit)
-            {
-            if (counter < 3){RenderOakSpeech(counter, this.Player, windowsGraphics.ProfOak);}
-            if (2 < counter & counter < 6){RenderOakSpeech(counter, this.Player, windowsGraphics.TitlePokemon);}
-            if (5 < counter & counter < 8){RenderOakSpeech(counter, this.Player, windowsGraphics.Me);}
-            if (7 < counter & counter < 11){RenderOakSpeech(counter, this.Player, windowsGraphics.Rival);}
-            if (counter > 10){RenderOakSpeech(counter, this.Player, windowsGraphics.Me);}
-
-            if (counter != 6 & counter != 9) {Console.ReadKey();}
-            else if (counter == 6)
-            {
-                string? input = Console.ReadLine();
-                if (input != ""){playerName = input;}
-                else {playerName = "Ashe";}
-                this.Player.SetName(playerName);
-
-            }
-            else if (counter == 9)
-            {
-                string? input = Console.ReadLine();
-                if (input != ""){rivalName = input;}
-                else {rivalName = "Red";}
-                this.Player.SetRivalName(rivalName);
-            }
-
-            counter += 1;
-            if (counter == windowsGraphics.ProfOakSpeechIntro.Count){this.Exit = true;}
-            }
-            this.Exit = false;
-        }
-
-
-        public void RenderOakSpeech(int row, Trainer Player, List<string> visual)
-        {
-            windowManager.SetWindow(new OakSpeech());
-            windowManager.DisplayWindow(row, windowsGraphics.CombineLists(visual, windowsGraphics.ProfOakSpeechIntro), Player, windowsGraphics.EmptyOption);
-            }
-
-
         public void SpawnInRoom()
         {
             while (!this.Exit)
             {
                 windowManager.SetWindow(new Room());
                 ChooseRow(2, windowsGraphics.MyRoom, windowsGraphics.ActionMenus["room"]);
-                ConsoleKeyInfo key = Console.ReadKey();
 
                 if (this.Row == 0)
                 {
@@ -123,11 +83,6 @@ namespace Poke
                 }
                 else if (this.Row == 1)
                 {
-                }
-                else if (key.Key == ConsoleKey.Escape)
-                {
-                    this.ExitGame();
-
                 }
             }
             this.Exit = false;
@@ -139,7 +94,6 @@ namespace Poke
             {
                 windowManager.SetWindow(new Room());
                 ChooseRow(3, windowsGraphics.KitchenRoom, windowsGraphics.ActionMenus["livingRoom"]);
-                ConsoleKeyInfo key = Console.ReadKey();
 
                 if (this.Row == 0)
                 {
@@ -147,11 +101,6 @@ namespace Poke
                 }
                 else if (this.Row == 1)
                 {
-                }
-                else if (key.Key == ConsoleKey.Escape)
-                {
-                    this.ExitGame();
-
                 }
             }
             this.Exit = false; 
@@ -187,6 +136,10 @@ namespace Poke
                 else if (key.Key == ConsoleKey.Enter)
                 {
                     exit = true;
+                }
+                else if (key.Key == ConsoleKey.Escape)
+                {
+                    ExitGame();
                 }
             }
         }

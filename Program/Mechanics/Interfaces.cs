@@ -5,17 +5,46 @@ namespace Poke
         void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText);
     }
 
-    public class Middler //Singleton
+
+    public class WindowManager //Strategy
     {
-        private static Middler? instance;
-        private Middler(){}
-        public static Middler Instance
+        private IWindowDisplay? _window;
+        private static WindowManager? instance;
+        private WindowManager() { }
+        public static WindowManager Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new Middler();
+                    instance = new WindowManager();
+                }
+                return instance;
+            }
+        }
+
+        public void SetWindow(IWindowDisplay window)
+        {
+            _window = window;
+        }
+        public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
+        {
+            _window?.DisplayWindow(row, strings, trainer, optionText);
+        }
+    }
+
+
+    public class Formater //Singleton
+    {
+        private static Formater? instance;
+        private Formater(){}
+        public static Formater Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Formater();
                 }
                 return instance;
             }
@@ -26,6 +55,7 @@ namespace Poke
             Console.WriteLine(new string(' ', width/2 - (row.Length/2)) + row);
         }
         
+
         public void PrintGameWindow(int x, int y, string backgroundRow, string playerRow, int playerCoord)
         {
             int width = Console.WindowWidth;
@@ -41,6 +71,7 @@ namespace Poke
             Console.Write("\n");
         }
 
+
         public List<List<string>> Separate(List<string> list)
         {
             int separatorIndex = list.IndexOf("NEXT_LIST");
@@ -54,6 +85,7 @@ namespace Poke
 
             return new List<List<string>>(){list1, list2};
         }
+
 
         public List<int> MoveToTheMiddle(List<string> list)
         {
@@ -69,6 +101,7 @@ namespace Poke
             return new List<int>(){x, y, y2};
         }
 
+
         public void PrintOptions(int row, List<string> strings)
         {
             for (int i = 0; i < strings.Count; i++)
@@ -80,6 +113,7 @@ namespace Poke
             }
         }
     }
+
 
     public interface IPokemon
     {
