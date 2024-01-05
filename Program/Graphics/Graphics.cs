@@ -80,6 +80,20 @@ namespace Poke
             "OAK: Be patient RIVAL_NAME, you can have one too!",
         };
 
+        public List<string> StarterPokemonChoosing = new List<string>
+        {
+            "POKÉBALL 1",
+            "POKÉBALL 2",
+            "POKÉBALL 3",
+        };
+
+        public List<string> ChoosedPokemon = new List<string>
+        {
+            "So! You want the fire POKÉMON, CHARMANDER?",
+            "So! You want the grass POKÉMON, BULBASAUR?",
+            "So! You want the water POKÉMON, SQUIRTLE?",
+        };
+
 
         public Dictionary<string, List<string>> ActionMenus = new Dictionary<string, List<string>>
         {
@@ -87,6 +101,9 @@ namespace Poke
             { "livingRoom", new List<string> {"Go outside", "Talk to mum", "Go upstairs" } },
             { "palletTown", new List<string> { "Go to Viridian City", "Go home", "Go to Oak's Lab" } },
         };
+
+
+
 
 
         public List<string> ProfOakSpeechLab = new List<string>

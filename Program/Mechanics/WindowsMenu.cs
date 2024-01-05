@@ -29,14 +29,13 @@ namespace Poke
 
 
 // Main Manu display
-    public class MainManu : IWindowDisplay
+    public class Menu : IWindowDisplay
     {
         Formater Formater = Formater.Instance;
         public void DisplayWindow(int row, List<string> strings, Trainer trainer, List<string> optionText)
         {
             Console.Clear();
             for (int i = 0; i < Console.WindowHeight/3; i++){Console.WriteLine("");}
-            Formater.Print("Main Menu ", Console.WindowWidth);
             for (int i = 0; i < 2; i++){Console.WriteLine("");}
 
             Formater.PrintOptions(row, strings);

@@ -1,5 +1,3 @@
-using Pokemon;
-
 namespace Poke
 {
     class Game
@@ -11,6 +9,8 @@ namespace Poke
         public WindowsGraphics windowsGraphics;
         public Trainer Player;
         public GraphicsManager GraphicsManager;
+        public List<IPokemon> Pokemons; //Pokemons existing in game
+        public PokemonFactory pokemonFactory;
 
         public Game()
         {
@@ -21,6 +21,9 @@ namespace Poke
             this.Exit = false;
             this.Player = new Trainer();
             this.GraphicsManager = new GraphicsManager();
+            this.Pokemons = new List<IPokemon>();
+            this.pokemonFactory = new PokemonFactory();
+
         }
 
 
@@ -40,6 +43,7 @@ namespace Poke
             SpawnInRoom();
             DownStairs();
             GraphicsManager.DoOakPokemonSelect(this.Player);
+            ChooseStarterPokemon();
             
         }
 
@@ -48,7 +52,7 @@ namespace Poke
         {
             while (!this.Exit)
             {
-                windowManager.SetWindow(new MainManu());
+                windowManager.SetWindow(new Menu());
                 ChooseRow(3, windowsGraphics.MainMenu, windowsGraphics.EmptyOption);
 
                 if (this.Row == 0)
@@ -106,6 +110,38 @@ namespace Poke
             this.Exit = false; 
         }
 
+        public void ChooseStarterPokemon()
+        {
+            CreatePokemon(1, "starter");
+            CreatePokemon(4, "starter");
+            CreatePokemon(7, "starter");
+
+            while (!this.Exit)
+            {
+                windowManager.SetWindow(new Menu());
+                ChooseRow(3, windowsGraphics.StarterPokemonChoosing, windowsGraphics.ChoosedPokemon);
+
+                if (this.Row == 0)
+                {
+                    GraphicsManager.RenderOakSpeech(this.Row, this.Player, pokeGraphics.CharmanderGraphics, windowsGraphics.ChoosedPokemon);
+                    System.Console.ReadKey();
+                                    foreach (IPokemon pokemon in this.Pokemons)
+                {Console.WriteLine(pokemon.GetId());}
+                    System.Console.ReadKey();
+                }
+                else if (this.Row == 1)
+                {
+                    GraphicsManager.RenderOakSpeech(this.Row, this.Player, pokeGraphics.BulbasaurGraphics, windowsGraphics.ChoosedPokemon);
+                    System.Console.ReadKey();
+                }
+                else if (this.Row == 2)
+                {
+                    GraphicsManager.RenderOakSpeech(this.Row, this.Player, pokeGraphics.SquirtleGraphics, windowsGraphics.ChoosedPokemon);
+                    System.Console.ReadKey();
+                }
+            }
+        }
+
         public void ExitGame()
         {
             windowManager.SetWindow(new Exit());
@@ -142,6 +178,11 @@ namespace Poke
                     ExitGame();
                 }
             }
+        }
+
+        public void CreatePokemon(int ID, string type)
+        {
+            this.Pokemons.Add(pokemonFactory.CreatePokemon(ID));
         }
     }
 }

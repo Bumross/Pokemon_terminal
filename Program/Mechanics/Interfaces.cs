@@ -118,16 +118,12 @@ namespace Poke
     public interface IPokemon
     {
         void Attack(IPokemon enemy);
-        void ShowStats();
+        List<string> ShowStats();
         void LevelUp();
+        int GetId();
         void GainXP(int xp);
-        void ShowAttacks();
+        List<string> ShowAttacks();
         void Heal(int heal);
         void GainDamage(int damage);
-    }
-
-    public interface IPokemonFactory
-    {
-        IPokemon CreatePokemon();
     }
 }

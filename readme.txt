@@ -19,8 +19,9 @@ Facade
     objekt Game funguje jako fasáda
     uchovává jiné objekty, které mají vlastní metody a volají je
 
-
-
+Factory
+    jednotliví pokémoni se tvoří factory metodou (factory objekt je PokemonFactory,
+    který podle zadaného id vytvoří objekt daného pokémona)
 
 
 TO-do

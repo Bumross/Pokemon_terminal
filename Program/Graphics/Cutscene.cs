@@ -1,6 +1,4 @@
-using Poke;
-
-namespace Pokemon
+namespace Poke
 {
     class GraphicsManager
     {
